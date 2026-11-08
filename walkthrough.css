@@ -30,7 +30,7 @@
   .gh .kind{display:inline-block;font-size:13px;font-weight:700;padding:4px 10px;border-radius:999px;margin-top:6px}
   .kind.mod{background:var(--warning-50);color:var(--warning-800)} .kind.new{background:var(--success-50);color:var(--success-700)} .kind.none{background:var(--n100);color:var(--muted)}
   .why{padding:18px 32px 0}
-  .why h4,.what h4,.not h4{margin:0 0 6px;font-size:14px;color:var(--blue);font-weight:700;letter-spacing:.01em}
+  .why h3,.what h3,.not h3{margin:0 0 6px;font-size:14px;color:var(--blue);font-weight:700;letter-spacing:.01em}
   .cols2{display:grid;grid-template-columns:1fr 1fr;gap:22px;padding:18px 32px 6px}
   @media(max-width:760px){.cols2{grid-template-columns:1fr}.toc ol{columns:1}h1{font-size:34px}}
   .cols2 ul{margin:0;padding-inline-start:20px}.cols2 li{margin-bottom:4px}
