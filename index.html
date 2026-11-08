@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>استبدال Trello — اقتراح التصميم (للمراجعة)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Tajawal:wght@400;500;700&family=Markazi+Text:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--blue:#0A3A9E;--blue-h:#012A83;--blue-50:#EEF2FB;--blue-200:#CDD9F3;--page:#FDFCFA;--surface:#FFFFFF;--line:#E7E5DF;--ink:#1D1D22;--ink-2:#41434A;--muted:#6B6D75;--n100:#F2F0EB;
+    --orange-50:#FFE3BE;--orange-600:#964100;--green-50:#DEFFDA;--green-600:#0A7A0A;--magenta-600:#990099;--orange-500:#D9650A;
+    --success-50:#EEF9EF;--success-700:#176031;--warning-50:#FEF6E7;--warning-800:#6B4406;--danger-50:#FEF1F0;--danger-700:#9A2C25;
+    --r-md:10px;--r-lg:16px;--r-xl:24px;--shadow-1:0 1px 2px rgb(29 29 34 / .06),0 2px 10px rgb(29 29 34 / .05)}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--page);color:var(--ink);font-family:"Tajawal",system-ui,sans-serif;font-size:17px;line-height:1.85;-webkit-font-smoothing:antialiased}
+  .latin{font-family:"Inter",system-ui,sans-serif}
+  .wrap{max-width:1100px;margin:0 auto;padding:32px 20px 96px}
+  .mark{display:inline-grid;grid-template-columns:repeat(2,9px);grid-auto-rows:9px;gap:2px;direction:ltr;vertical-align:middle}
+  .mark i{display:block;border-radius:1px}.mark i:nth-child(1){background:var(--orange-500)}.mark i:nth-child(2){background:var(--magenta-600)}.mark i:nth-child(3){background:var(--blue)}.mark i:nth-child(4){background:var(--green-600)}
+  .eyebrow{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:14px;font-weight:500}
+  h1{font:600 42px/1.35 "Markazi Text",serif;margin:4px 0 10px}
+  h2{font:600 30px/1.4 "Markazi Text",serif;margin:0}
+  .lede{color:var(--ink-2);font-size:18px;margin:0 0 18px;max-width:75ch}
+  header.hero{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-xl);padding:32px 36px;margin-bottom:28px;box-shadow:var(--shadow-1)}
+  .steps{display:flex;gap:8px;flex-wrap:wrap;padding:0;margin:0;list-style:none}
+  .steps li{font-size:14px;font-weight:600;padding:6px 14px;border-radius:999px;background:var(--n100);color:var(--muted);border:1px solid var(--line)}
+  .steps li.done{background:var(--success-50);color:var(--success-700);border-color:#BFE3C4}
+  .steps li.now{background:var(--blue-50);color:var(--blue);border-color:var(--blue-200)}
+  .rule{border:1px solid var(--blue-200);background:var(--blue-50);border-radius:var(--r-lg);padding:16px 20px;margin:18px 0 0;font-size:16px}
+  .rule b{color:var(--blue)}
+  .toc{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:18px 24px;margin-bottom:28px}
+  .toc ol{margin:8px 0 0;padding-inline-start:22px;columns:2;column-gap:32px}
+  .toc li{margin:0 0 4px;font-size:15.5px}
+  .toc a{color:var(--blue);text-decoration:none;font-weight:600}
+  section.gap{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-xl);margin:0 0 32px;overflow:hidden;box-shadow:var(--shadow-1)}
+  .gh{padding:24px 32px 16px;border-bottom:1px solid var(--line);display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap}
+  .gh .n{font:700 20px/1 "Inter",sans-serif;color:#fff;background:var(--blue);width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex:none}
+  .gh .t{flex:1;min-width:260px}
+  .gh .kind{display:inline-block;font-size:13px;font-weight:700;padding:4px 10px;border-radius:999px;margin-top:6px}
+  .kind.mod{background:var(--warning-50);color:var(--warning-800)} .kind.new{background:var(--success-50);color:var(--success-700)} .kind.none{background:var(--n100);color:var(--muted)}
+  .why{padding:18px 32px 0}
+  .why h4,.what h4,.not h4{margin:0 0 6px;font-size:14px;color:var(--blue);font-weight:700;letter-spacing:.01em}
+  .cols2{display:grid;grid-template-columns:1fr 1fr;gap:22px;padding:18px 32px 6px}
+  @media(max-width:760px){.cols2{grid-template-columns:1fr}.toc ol{columns:1}h1{font-size:34px}}
+  .cols2 ul{margin:0;padding-inline-start:20px}.cols2 li{margin-bottom:4px}
+  figure{margin:0;padding:18px 32px;background:var(--n100)}
+  figure img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:var(--r-md);background:#fff}
+  figcaption{color:var(--muted);font-size:14px;margin-top:8px;text-align:center}
+  .decide{display:flex;align-items:center;gap:14px;padding:16px 32px 20px;border-top:1px solid var(--line);flex-wrap:wrap}
+  .decide .q{font-weight:700;flex:1;min-width:200px}
+  .opt{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--line);border-radius:999px;padding:7px 16px;font-weight:600;font-size:15px}
+  .opt.ok{border-color:#BFE3C4;color:var(--success-700);background:var(--success-50)}
+  .opt.ed{border-color:#F0D9A6;color:var(--warning-800);background:var(--warning-50)}
+  .src{font-size:13.5px;color:var(--muted)}
+  .src code{font-family:"Inter",monospace;font-size:12.5px;background:var(--n100);padding:1px 6px;border-radius:4px}
+  .callout{border:1px solid var(--line);border-radius:var(--r-lg);padding:18px 24px;margin:0 0 28px;background:var(--surface)}
+  .callout.ask{border-color:var(--blue-200);background:var(--blue-50)}
+  .callout.warn{border-color:#F0D9A6;background:var(--warning-50)}
+  .callout h3{margin:0 0 8px;font-size:18px}
+  .callout ul{margin:0;padding-inline-start:20px}
+  table{width:100%;border-collapse:collapse;font-size:15px}
+  th{text-align:start;background:var(--n100);padding:8px 12px;border-bottom:1px solid var(--line);font-size:13.5px;color:var(--muted)}
+  td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  footer{color:var(--muted);font-size:13.5px;text-align:center;margin-top:40px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="eyebrow"><span class="mark"><i></i><i></i><i></i><i></i></span>إدارة المهام · استبدال Trello · المرحلة الثالثة (التصميم)</div>
+  <h1>ما كنّا نستخدمه في Trello وغير موجود عندنا — وكيف نضيفه بلا تغيير كبير</h1>
+  <p class="lede">هذا الاقتراح لعبدالله. تسع فجوات محصورة من جرد Trello الفعلي (١٣ لوحة، ٨٦٧ بطاقة، ١٧,٠٤٧ حركة). لكل فجوة: <b>لماذا</b> وضعناها، <b>ما الذي يتغيّر</b> على الشاشة، <b>ما الذي لا يتغيّر</b>، وصورة. كل صورة مرسومة بهوية النظام الحالية (أزرق TheTeam، نفس القائمة الجانبية، نفس النوافذ) — لا شاشة مُعاد تصميمها.</p>
+  <ul class="steps"><li class="done">١ · المتطلبات (BRD v1.2.0)</li><li class="done">٢ · سير العمل (v1.0.0)</li><li class="now">٣ · التصميم — هذه الصفحة</li><li>٤ · الصلاحيات والموصل</li><li>٥ · التطوير</li></ul>
+  <div class="rule"><b>القاعدة التي يلتزم بها كل ما تحت:</b> النظام الموجود لا نعدّل عليه تعديلات كبيرة. نضيف فقط ما كان يُستخدم في Trello فعلاً وغير موجود. <b>شاشة جديدة واحدة</b> (نقل Trello) و<b>تعديلات صغيرة على ستّ شاشات قائمة</b>. وما لم يكن يُستخدم في Trello (Butler، Power-Ups، الجدول الزمني) لا نبنيه.</div>
+</header>
+
+<div class="toc"><b>الفجوات التسع</b>
+  <ol>
+    <li><a href="#g1">مستخدم العميل على اللوحة الحرة</a></li>
+    <li><a href="#g2">إنشاء لوحة من قالب</a></li>
+    <li><a href="#g3">الإشعار بالبريد</a></li>
+    <li><a href="#g4">نقل لوحات Trello</a></li>
+    <li><a href="#g5">أفعال الأتمتة الناقصة</a></li>
+    <li><a href="#g6">أنواع الملفات</a></li>
+    <li><a href="#g7">رقم بطاقة Trello القديم</a></li>
+    <li><a href="#g8">صورة غلاف البطاقة</a></li>
+    <li><a href="#g9">نقل البطاقة إلى لوحة أخرى</a></li>
+  </ol>
+</div>
+
+<!-- ───────────── الفجوة ١ ───────────── -->
+<section class="gap" id="g1">
+  <div class="gh"><span class="n">1</span><div class="t"><h2>مستخدم العميل يعمل على لوحته الحرة</h2><span class="kind mod">تعديل على شاشة قائمة + قسم في بوابة العميل</span></div></div>
+  <div class="why"><h4>لماذا</h4><p style="margin:0">ثلاثة أشخاص من خارج الشركة يعملون اليوم على Trello كأعضاء عاديين: Essa (Direct) وaqeel (IBCC) وMahmas (K-Health، ١,٢٩٥ حركة أغلبها أتمتة). في النظام، اللوحات الحرة للموظفين فقط، وبوابة العميل تعرض لوحات خطة التشغيل وحدها. <b>قرارك:</b> لا يوجد «ضيف» — الشخص الخارجي مستخدمُ بوابةِ عميلٍ بدوره القائم تحت عميل مسجّل (DEC-017).</p></div>
+  <div class="cols2">
+    <div class="what"><h4>ما الذي يتغيّر</h4><ul>
+      <li>نافذة «مشاركة اللوحة» الحالية تأخذ مفتاحاً: <b>زميل من الفريق | مستخدم عميل</b>. الباقي كما هو.</li>
+      <li>عند اختيار «مستخدم عميل»: العميل يُقرأ من اللوحة نفسها (كل لوحة تتبع جهة واحدة)، تبحث عن مستخدم عنده حساب، أو تدعو بريداً جديداً وتختار دوره في البوابة.</li>
+      <li>الصلاحية القصوى <b>«يمكنه التعديل»</b> — لا يصير مالكاً أبداً، ولا يدعو ولا يغلق (كالعضو العادي في Trello).</li>
+      <li>قسم «دعوات معلّقة» مع «إلغاء الدعوة»؛ وصفّ المستخدم يحمل شارة «عميل · K-Health».</li>
+      <li>في بوابة العميل: صفحة «إدارة المهام» الموجودة تزيد قسماً <b>«لوحات العمل»</b> فوق خطط Deliverables Plan.</li>
+    </ul></div>
+    <div class="not"><h4>ما الذي لا يتغيّر</h4><ul>
+      <li>شاشة اللوحة نفسها — العميل يراها كما يراها الموظف، بلا زرّ «مشاركة» ولا «⋯» (ليست له أصلاً فلا تُرسم).</li>
+      <li>العميل <b>لا ينشئ لوحات</b>؛ يعمل على ما نضعه فيه، ويضيف بطاقة إذا كان عنده طلب.</li>
+      <li>الإخفاء الافتراضي للبطاقات يبقى (DEC-013). البطاقات المنقولة تُفتح لمن كان عضواً في لوحتها يوم النقل.</li>
+    </ul></div>
+  </div>
+  <figure><img src="img/TR-1.png" alt="نافذة مشاركة اللوحة مع مفتاح زميل / مستخدم عميل"><figcaption>TR-1 · نافذة المشاركة الحالية + مفتاح «مستخدم عميل» + الدعوات المعلّقة</figcaption></figure>
+  <figure><img src="img/TR-2.png" alt="صفحة قبول الدعوة"><figcaption>TR-2 · ما يصل المدعو الجديد: صفحة «قبول الدعوة» بنفس شكل صفحة الدخول</figcaption></figure>
+  <figure><img src="img/TR-3.png" alt="صفحة إدارة المهام في بوابة العميل مع قسم لوحات العمل"><figcaption>TR-3 · بوابة العميل: قسم «لوحات العمل» في صفحة إدارة المهام الموجودة</figcaption></figure>
+  <figure><img src="img/TR-4.png" alt="اللوحة كما يراها مستخدم العميل"><figcaption>TR-4 · اللوحة كما يراها مستخدم العميل: يضيف بطاقة، ينقلها، يعلّق — بلا مشاركة ولا إغلاق</figcaption></figure>
+  <div class="decide"><span class="q">الفجوة ١ — مستخدم العميل</span><span class="opt ok">☐ موافق</span><span class="opt ed">☐ تعديل: ………………</span></div>
+</section>
+
+<!-- ───────────── الفجوة ٢ ───────────── -->
+<section class="gap" id="g2">
+  <div class="gh"><span class="n">2</span><div class="t"><h2>إنشاء لوحة من قالب</h2><span class="kind mod">تعديل على نافذة «إنشاء لوحة» + صفّ في قائمة اللوحة</span></div></div>
+  <div class="why"><h4>لماذا</h4><p style="margin:0">كل لوحات المشاريع في Trello نُسخت من بعضها بنفس المراحل (New Request → Development → UAT → Completed → Launched)، وبعضها بمرحلة «Client Testing» كما في NICE وDen، ولوحة DFTR تصير قالباً (TR-010). في النظام تكتب الأعمدة يدوياً في كل مرة.</p></div>
+  <div class="cols2">
+    <div class="what"><h4>ما الذي يتغيّر</h4><ul>
+      <li>نافذة «إنشاء لوحة» الحالية تأخذ خانة <b>«ابدأ من»</b>: المسار المعتاد · اختبار العميل · DFTR · لوحة فارغة.</li>
+      <li>القالب ينسخ الأعمدة بترتيبها وتعريفات الحقول المخصصة والوسوم — <b>ولا ينسخ بطاقات أبداً</b>.</li>
+      <li>قائمة اللوحة (⋯) تأخذ صفاً واحداً: <b>«حفظ كقالب»</b> — للمالك فقط.</li>
+    </ul></div>
+    <div class="not"><h4>ما الذي لا يتغيّر</h4><ul><li>«لوحة فارغة» = سلوك اليوم حرفياً.</li><li>لا شاشة إدارة قوالب مستقلة؛ القالب لوحة محفوظة بهذه الصفة.</li></ul></div>
+  </div>
+  <figure><img src="img/TR-5.png" alt="نافذة إنشاء لوحة مع اختيار القالب"><figcaption>TR-5 · «ابدأ من» داخل نافذة الإنشاء الحالية</figcaption></figure>
+  <figure><img src="img/TR-5b.png" alt="قائمة اللوحة مع صف حفظ كقالب"><figcaption>TR-5b · صفّ «حفظ كقالب» في قائمة اللوحة</figcaption></figure>
+  <div class="decide"><span class="q">الفجوة ٢ — القوالب</span><span class="opt ok">☐ موافق</span><span class="opt ed">☐ تعديل: ………………</span></div>
+</section>
+
+<!-- ───────────── الفجوة ٣ ───────────── -->
+<section class="gap" id="g3">
+  <div class="gh"><span class="n">3</span><div class="t"><h2>الإشعار بالبريد</h2><span class="kind none">بلا شاشة جديدة — إعدادات فقط</span></div></div>
+  <div class="why"><h4>لماذا</h4><p style="margin:0">مستخدم العميل لا يفتح النظام يومياً؛ Trello يرسل له بريداً عند ذكره أو إسناده أو التعليق على بطاقته. وأنت وميثم تفقدان بريد Trello بعد الإلغاء.</p></div>
+  <div class="cols2">
+    <div class="what"><h4>ما الذي يتغيّر</h4><ul><li>ثلاثة أحداث تُضاف إلى إشعارات النظام القائمة (ذكر في تعليق · إسناد إلى بطاقة · تعليق جديد على بطاقة أنت عضو فيها) — بالبريد، للموظف ولمستخدم العميل، بلغة كلٍّ منهما.</li><li>تُدار من تبويب الإشعارات الموجود في لوحة الإعدادات، وصفحة «تفضيلات الإشعارات» الموجودة لكل مستخدم.</li></ul></div>
+    <div class="not"><h4>ما الذي لا يتغيّر</h4><ul><li>لا شاشة جديدة. فشل البريد لا يُفشل التعليق (NFR-007).</li></ul></div>
+  </div>
+  <div class="decide"><span class="q">الفجوة ٣ — البريد</span><span class="opt ok">☐ موافق</span><span class="opt ed">☐ تعديل: ………………</span></div>
+</section>
+
+<!-- ───────────── الفجوة ٤ ───────────── -->
+<section class="gap" id="g4">
+  <div class="gh"><span class="n">4</span><div class="t"><h2>نقل لوحات Trello إلى النظام</h2><span class="kind new">الشاشة الجديدة الوحيدة · تراها أنت وعدنان فقط</span></div></div>
+  <div class="why"><h4>لماذا</h4><p style="margin:0">١٠ لوحات فيها عمل و٨٦٧ بطاقة بتعليقاتها وملفاتها وتاريخ نقلها بين المراحل. قرارك: ننقلها كلها، ولا يضيع شيء، وTrello يبقى مفتوحاً حتى تقرّر أنت — فالنقل يُعاد ليلتقط ما كُتب في Trello بعد آخر مرة.</p></div>
+  <div class="cols2">
+    <div class="what"><h4>ما الذي يتغيّر</h4><ul>
+      <li>صفحة واحدة داخل إدارة المهام بثلاث خطوات: <b>قائمة ربط الأعضاء</b> (من في Trello = من في النظام)، <b>اللوحات</b> (مصير كل لوحة وحالة نقلها وزرها)، <b>تقرير المطابقة</b> (الأعداد في Trello مقابل النظام).</li>
+      <li>الفرق لا يُغلق إلا بقبولك: زر <b>«قبول الفروق»</b> يظهر لك وحدك، مع سبب يُسجَّل باسمك (BRULE-005).</li>
+      <li>يراها حامل صلاحية «تشغيل النقل» (عدنان) و«قبول الفروق» (أنت). باقي الموظفين لا يرونها.</li>
+    </ul></div>
+    <div class="not"><h4>ما الذي لا يتغيّر</h4><ul><li>لا تتدخل الشاشة في إلغاء Trello ولا تجميده ولا إغلاق لوحاته — كلها لك (DEC-018).</li><li>المحتوى المنقول يحتفظ بكاتبه ووقته الأصلي، لا يُنسب لمن نفّذ النقل.</li></ul></div>
+  </div>
+  <figure><img src="img/TR-6.png" alt="شاشة نقل Trello"><figcaption>TR-6 · نقل Trello: قائمة الربط · اللوحات وحالاتها · تقرير المطابقة وقبول الفروق</figcaption></figure>
+  <div class="decide"><span class="q">الفجوة ٤ — النقل</span><span class="opt ok">☐ موافق</span><span class="opt ed">☐ تعديل: ………………</span></div>
+</section>
+
+<!-- ───────────── الفجوة ٥ ───────────── -->
+<section class="gap" id="g5">
+  <div class="gh"><span class="n">5</span><div class="t"><h2>الأتمتة تكتب على النظام بهوية مستقلة</h2><span class="kind mod">تعديل على نموذج «إصدار مفتاح» القائم + أدوات في الموصل</span></div></div>
+  <div class="why"><h4>لماذا</h4><p style="margin:0">٨٦٪ من حركات Trello (١٤,٧١٤ من ١٧,٠٤٧) تكتبها مهارات Claude وأتمتة GitHub — بمفتاحك الشخصي. نقل ذلك كما هو يعطي الأتمتة رمزاً يرى الفواتير والمصروفات. الأفعال الناقصة في الموصل اليوم: إرفاق ملف ورابط، إضافة عضو وإزالته، وبعض أفعال الوسوم.</p></div>
+  <div class="cols2">
+    <div class="what"><h4>ما الذي يتغيّر</h4><ul><li>نموذج إصدار المفتاح الموجود يأخذ نوعاً <b>«هوية أتمتة»</b>: اسم يظهر على كل حركة، ولوحات محددة لا غير، ويُسحب أو يُدوَّر من نفس الصفحة.</li><li>تظهر في قائمة المفاتيح بشارة «أتمتة» ونطاقها.</li><li>حركات الأتمتة تتميّز في التعليقات والسجل بشارة «أتمتة».</li><li>أفعال الموصل الناقصة تُضاف (بلا شاشة).</li></ul></div>
+    <div class="not"><h4>ما الذي لا يتغيّر</h4><ul><li>لا بديل لـButler (DEC-009): أثره ٦٥ حركة من ١٧,٠٤٧.</li><li>المفاتيح الشخصية كما هي.</li></ul></div>
+  </div>
+  <figure><img src="img/TR-7.png" alt="إصدار هوية أتمتة"><figcaption>TR-7 · نوع «هوية أتمتة» في نموذج إصدار المفتاح، مقصورة على لوحات بعينها</figcaption></figure>
+  <div class="decide"><span class="q">الفجوة ٥ — الأتمتة</span><span class="opt ok">☐ موافق</span><span class="opt ed">☐ تعديل: ………………</span></div>
+</section>
+
+<!-- ───────────── الفجوة ٦ ───────────── -->
+<section class="gap" id="g6">
+  <div class="gh"><span class="n">6</span><div class="t"><h2>أنواع الملفات المرفقة</h2><span class="kind none">بلا شاشة — قاعدة قبول الملفات فقط</span></div></div>
+  <div class="why"><h4>لماذا</h4><p style="margin:0">٢٨٠ من ٤١٦ ملفاً مرفقاً في Trello لا تقبلها قائمة الامتدادات الحالية باسمها (أغلبها بلا امتداد في الاسم)، ومنها ٣١ ملف markdown و٤ ملفات مضغوطة وفيديو واحد.</p></div>
+  <div class="cols2">
+    <div class="what"><h4>ما الذي يتغيّر</h4><ul><li>النظام يستنتج نوع الملف من محتواه حين يخلو اسمه من الامتداد.</li><li>تُقبل على بطاقات اللوحات: <span class="latin">.md</span> و<span class="latin">.zip</span> والفيديو (الافتراض المقترح — OQ-013).</li></ul></div>
+    <div class="not"><h4>ما الذي لا يتغيّر</h4><ul><li>الحد ٢٥ ميجابايت كما هو (أكبر ملف في Trello ١٣.٢).</li><li>الملف التنفيذي الوحيد لا يُستورد ويبقى في أرشيف Trello ويُذكر في تقرير المطابقة.</li></ul></div>
+  </div>
+  <div class="decide"><span class="q">الفجوة ٦ — الملفات</span><span class="opt ok">☐ موافق</span><span class="opt ed">☐ تعديل: ………………</span></div>
+</section>
+
+<!-- ───────────── الفجوة ٧ ───────────── -->
+<section class="gap" id="g7">
+  <div class="gh"><span class="n">7</span><div class="t"><h2>رقم بطاقة Trello القديم</h2><span class="kind mod">شارة على البطاقة + البحث بها</span></div></div>
+  <div class="why"><h4>لماذا</h4><p style="margin:0">سجلّات الإطلاق وتعليقات GitHub تشير للبطاقات بأرقام مثل #201. النظام يرقّم البطاقات CARD-NNNNNN ترقيماً متصلاً لا يُعاد (قاعدة الترقيم) — فلا نكسره، ونحفظ رقم Trello مرجعاً.</p></div>
+  <div class="cols2">
+    <div class="what"><h4>ما الذي يتغيّر</h4><ul><li>البطاقة المنقولة تحمل شارة «Trello #201» بجانب رقمها الرسمي في ظهر البطاقة وعلى البطاقة الصغيرة.</li><li>البحث داخل اللوحة يجدها بالرقم القديم.</li></ul></div>
+    <div class="not"><h4>ما الذي لا يتغيّر</h4><ul><li>الرقم الرسمي يبقى CARD- (DEC-011). البطاقات الجديدة لا رقم Trello لها.</li></ul></div>
+  </div>
+  <div class="decide"><span class="q">الفجوة ٧ — الرقم القديم</span><span class="opt ok">☐ موافق</span><span class="opt ed">☐ تعديل: ………………</span></div>
+</section>
+
+<!-- ───────────── الفجوة ٨ ───────────── -->
+<section class="gap" id="g8">
+  <div class="gh"><span class="n">8</span><div class="t"><h2>صورة غلاف البطاقة</h2><span class="kind mod">زرّ على المرفق + صورة أعلى البطاقة الصغيرة</span></div></div>
+  <div class="why"><h4>لماذا</h4><p style="margin:0">مستخدمة على قرابة ١٨٠ بطاقة في Trello. شكلية، لكنها كانت تُستخدم — وقلت: أتقن كل ما يوجد هناك وغير موجود عندنا.</p></div>
+  <div class="cols2">
+    <div class="what"><h4>ما الذي يتغيّر</h4><ul><li>في قسم «المرفقات» بظهر البطاقة: الصور فقط تأخذ زرّ <b>«اجعلها غلافاً»</b>، والغلاف الحالي يحمل شارة «الغلاف» وزرّ «إزالة الغلاف».</li><li>البطاقة الصغيرة على اللوحة تعرض الغلاف شريطاً فوق العنوان (كما في Trello).</li></ul></div>
+    <div class="not"><h4>ما الذي لا يتغيّر</h4><ul><li>لا غلاف لوني ولا مكتبة صور — صورة مرفقة فقط.</li></ul></div>
+  </div>
+  <div class="decide"><span class="q">الفجوة ٨ — الغلاف</span><span class="opt ok">☐ موافق</span><span class="opt ed">☐ تعديل: ………………</span></div>
+</section>
+
+<!-- ───────────── الفجوة ٩ ───────────── -->
+<section class="gap" id="g9">
+  <div class="gh"><span class="n">9</span><div class="t"><h2>نقل البطاقة إلى لوحة أخرى</h2><span class="kind mod">اختيار اللوحة داخل زرّ «نقل» الموجود</span></div></div>
+  <div class="why"><h4>لماذا</h4><p style="margin:0">استُخدم ٤ مرات فقط في Trello، لكنه من المطلوب إتقانه. في النظام اليوم «نقل» يختار العمود داخل نفس اللوحة فقط.</p></div>
+  <div class="cols2">
+    <div class="what"><h4>ما الذي يتغيّر</h4><ul><li>لوحة «نقل» في ظهر البطاقة تأخذ خانة <b>«اللوحة»</b> قبل «العمود».</li><li>تنتقل البطاقة بوصفها وتعليقاتها ومرفقاتها، وتبقى الوسوم والحقول المخصصة التي للوحة الهدف مقابلٌ لها.</li></ul></div>
+    <div class="not"><h4>ما الذي لا يتغيّر</h4><ul><li>النقل داخل اللوحة كما هو. مستخدم العميل ينقل فقط بين لوحات هو عضو فيها.</li></ul></div>
+  </div>
+  <figure><img src="img/TR-8.png" alt="ظهر البطاقة: رقم Trello، الغلاف، النقل إلى لوحة أخرى"><figcaption>TR-8 · ظهر البطاقة الحالي بالإضافات الثلاث: الرقم القديم (٧) · الغلاف (٨) · النقل إلى لوحة أخرى (٩)</figcaption></figure>
+  <div class="decide"><span class="q">الفجوة ٩ — النقل بين اللوحات</span><span class="opt ok">☐ موافق</span><span class="opt ed">☐ تعديل: ………………</span></div>
+</section>
+
+<div class="callout ask">
+  <h3>ثلاثة أشياء نحتاج كلمتك فيها قبل التطوير</h3>
+  <ul>
+    <li><b>قدرة مستخدم العميل على لوحته = العضو العادي في Trello</b> (ينشئ ويعدّل وينقل ويعلّق ويرفق — ولا يدعو ولا يغلق). مكتوبة في المتطلبات بقرار عدنان (DEC-002) وتنتظر تأكيدك الصريح.</li>
+    <li><b>مدة صلاحية الدعوة</b> قبل أن تنتهي (WFOQ-001). لم نرسم رقماً في الشاشة حتى لا نفترضه.</li>
+    <li><b>من يرى تلقائياً البطاقة الجديدة</b> التي تنشئها الأتمتة أو يفتحها مستخدم العميل (OQ-021). الافتراض المقترح: مالك اللوحة وكل الموظفين الأعضاء فيها.</li>
+  </ul>
+</div>
+
+<div class="callout warn">
+  <h3>ما لن نبنيه عمداً — لأنه لم يكن يُستخدم أو قُطع بقرار سابق</h3>
+  <ul>
+    <li>Butler (بديل الأتمتة): أثره ٦٥ حركة من ١٧,٠٤٧ — DEC-009.</li>
+    <li>Power-Ups · الجدول الزمني والتقويم الخاصة بـTrello Premium · نسخ اللوحة · الصورة الخلفية · النجمة ★ · نسخ البطاقة ومشاركتها (DEC-TM-8، وافقت عليها 2026-07-17).</li>
+    <li>أي تغيير على لوحات خطة التشغيل أو بوابة العميل القائمة (CON-001).</li>
+  </ul>
+</div>
+
+<div class="callout">
+  <h3>الحجم بالأرقام</h3>
+  <table>
+    <thead><tr><th>النوع</th><th>العدد</th><th>الشاشات</th></tr></thead>
+    <tbody>
+      <tr><td>شاشة جديدة</td><td>1</td><td>نقل Trello (TR-6)</td></tr>
+      <tr><td>صفحة جديدة بنمط قائم</td><td>1</td><td>قبول الدعوة (TR-2) — نفس شكل صفحة الدخول</td></tr>
+      <tr><td>تعديل على شاشة قائمة</td><td>6</td><td>مشاركة اللوحة · بوابة العميل/إدارة المهام · إنشاء لوحة · قائمة اللوحة · مفاتيح API · ظهر البطاقة</td></tr>
+      <tr><td>بلا شاشة</td><td>2</td><td>البريد · أنواع الملفات</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<footer>TheTeam · إدارة المهام · اقتراح التصميم لاستبدال Trello · 2026-11-08 · للمراجعة فقط، بيانات الشاشات مصطنعة</footer>
+</div>
+</body>
+</html>
