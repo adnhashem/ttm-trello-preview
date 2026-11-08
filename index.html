@@ -1,199 +1,189 @@
 <!doctype html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>استبدال Trello — اقتراح التصميم (للمراجعة)</title>
+<title>Trello replacement — design proposal (for review)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Tajawal:wght@400;500;700&family=Markazi+Text:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Markazi+Text:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="walkthrough.css">
 </head>
 <body>
-<a class="langswitch" href="en.html" lang="en" dir="ltr" aria-label="English version">EN</a>
 <div class="wrap">
 
 <header class="hero">
-  <div class="eyebrow"><span class="mark"><i></i><i></i><i></i><i></i></span>إدارة المهام · استبدال Trello · المرحلة الثالثة (التصميم)</div>
-  <h1>ما كنّا نستخدمه في Trello وغير موجود عندنا — وكيف نضيفه بلا تغيير كبير</h1>
-  <p class="lede">هذا الاقتراح لعبدالله. تسع فجوات محصورة من جرد Trello الفعلي (١٣ لوحة، ٨٦٧ بطاقة، ١٧,٠٤٧ حركة). لكل فجوة: <b>لماذا</b> وضعناها، <b>ما الذي يتغيّر</b> على الشاشة، <b>ما الذي لا يتغيّر</b>، وصورة. كل صورة مرسومة بهوية النظام الحالية (أزرق TheTeam، نفس القائمة الجانبية، نفس النوافذ) — لا شاشة مُعاد تصميمها.</p>
-  <ul class="steps"><li class="done">١ · المتطلبات (BRD v1.2.0)</li><li class="done">٢ · سير العمل (v1.0.0)</li><li class="now">٣ · التصميم — هذه الصفحة</li><li>٤ · الصلاحيات والموصل</li><li>٥ · التطوير</li></ul>
-  <div class="rule"><b>القاعدة التي يلتزم بها كل ما تحت:</b> النظام الموجود لا نعدّل عليه تعديلات كبيرة. نضيف فقط ما كان يُستخدم في Trello فعلاً وغير موجود. <b>شاشة جديدة واحدة</b> (نقل Trello) و<b>تعديلات صغيرة على ستّ شاشات قائمة</b>. وما لم يكن يُستخدم في Trello (Butler، Power-Ups، الجدول الزمني) لا نبنيه.</div>
+  <div class="eyebrow"><span class="mark"><i></i><i></i><i></i><i></i></span>Task Management · Trello replacement · Step 3 (design)</div>
+  <h1>What we used in Trello and do not have yet — and how we add it without a big change</h1>
+  <p class="lede">This proposal is for Abdullah. Nine gaps, measured from the real Trello inventory (13 boards, 867 cards, 17,047 actions). For each gap: <b>why</b> it is here, <b>what changes</b> on screen, <b>what does not change</b>, and a picture. Every picture is drawn in the system's current identity (TheTeam blue, the same sidebar, the same dialogs) — no screen is redesigned. <span class="note-ar">The screen mock-ups are in Arabic, as the team uses the system; the English page describes the same screens.</span></p>
+  <ul class="steps"><li class="done">1 · Requirements (BRD v1.2.0)</li><li class="done">2 · Workflow (v1.0.0)</li><li class="now">3 · Design — this page</li><li>4 · Permissions & connector</li><li>5 · Development</li></ul>
+  <div class="rule"><b>The rule everything below follows:</b> no large changes to the existing system. We add only what was actually used in Trello and is missing. <b>One new screen</b> (Trello migration) and <b>small changes to six existing screens</b>. What was not used in Trello (Butler, Power-Ups, Timeline) is not built.</div>
 </header>
 
-<div class="toc"><b>الفجوات التسع</b>
+<div class="toc"><b>The nine gaps</b>
   <ol>
-    <li><a href="#g1">مستخدم العميل على اللوحة الحرة</a></li>
-    <li><a href="#g2">إنشاء لوحة من قالب</a></li>
-    <li><a href="#g3">الإشعار بالبريد</a></li>
-    <li><a href="#g4">نقل لوحات Trello</a></li>
-    <li><a href="#g5">أفعال الأتمتة الناقصة</a></li>
-    <li><a href="#g6">أنواع الملفات</a></li>
-    <li><a href="#g7">رقم بطاقة Trello القديم</a></li>
-    <li><a href="#g8">صورة غلاف البطاقة</a></li>
-    <li><a href="#g9">نقل البطاقة إلى لوحة أخرى</a></li>
+    <li><a href="#g1">A client user on a work board</a></li>
+    <li><a href="#g2">Create a board from a template</a></li>
+    <li><a href="#g3">Email notifications</a></li>
+    <li><a href="#g4">Migrating the Trello boards</a></li>
+    <li><a href="#g5">The missing automation actions</a></li>
+    <li><a href="#g6">File types</a></li>
+    <li><a href="#g7">The old Trello card number</a></li>
+    <li><a href="#g8">Card cover image</a></li>
+    <li><a href="#g9">Move a card to another board</a></li>
   </ol>
 </div>
 
-<!-- ───────────── الفجوة ١ ───────────── -->
 <section class="gap" id="g1">
-  <div class="gh"><span class="n">1</span><div class="t"><h2>مستخدم العميل يعمل على لوحته الحرة</h2><span class="kind mod">تعديل على شاشة قائمة + قسم في بوابة العميل</span></div></div>
-  <div class="why"><h3>لماذا</h3><p style="margin:0">ثلاثة أشخاص من خارج الشركة يعملون اليوم على Trello كأعضاء عاديين: Essa (Direct) وaqeel (IBCC) وMahmas (K-Health، ١,٢٩٥ حركة أغلبها أتمتة). في النظام، اللوحات الحرة للموظفين فقط، وبوابة العميل تعرض لوحات خطة التشغيل وحدها. <b>قرارك:</b> لا يوجد «ضيف» — الشخص الخارجي مستخدمُ بوابةِ عميلٍ بدوره القائم تحت عميل مسجّل (DEC-017).</p></div>
+  <div class="gh"><span class="n">1</span><div class="t"><h2>A client user works on their work board</h2><span class="kind mod">Change to an existing dialog + a section in the client portal</span></div></div>
+  <div class="why"><h3>Why</h3><p style="margin:0">Three people outside the company work on Trello today as normal members: Essa (Direct), aqeel (IBCC) and Mahmas (K-Health — 1,295 actions, mostly automation). In the system, work boards are staff-only and the client portal shows Deliverables Plan boards only. <b>Your decision:</b> there is no "guest" — an outsider is a client-portal user with their existing role, under a registered client (DEC-017).</p></div>
   <div class="cols2">
-    <div class="what"><h3>ما الذي يتغيّر</h3><ul>
-      <li>نافذة «مشاركة اللوحة» الحالية تأخذ مفتاحاً: <b>زميل من الفريق | مستخدم عميل</b>. الباقي كما هو.</li>
-      <li>عند اختيار «مستخدم عميل»: العميل يُقرأ من اللوحة نفسها (كل لوحة تتبع جهة واحدة)، تبحث عن مستخدم عنده حساب، أو تدعو بريداً جديداً وتختار دوره في البوابة.</li>
-      <li>الصلاحية القصوى <b>«يمكنه التعديل»</b> — لا يصير مالكاً أبداً، ولا يدعو ولا يغلق (كالعضو العادي في Trello).</li>
-      <li>قسم «دعوات معلّقة» مع «إلغاء الدعوة»؛ وصفّ المستخدم يحمل شارة «عميل · K-Health».</li>
-      <li>في بوابة العميل: صفحة «إدارة المهام» الموجودة تزيد قسماً <b>«لوحات العمل»</b> فوق خطط Deliverables Plan.</li>
+    <div class="what"><h3>What changes</h3><ul>
+      <li>The existing "Share board" dialog gets one toggle: <b>Team colleague | Client user</b>. Everything else stays.</li>
+      <li>With "Client user": the client is read from the board itself (every board belongs to one client), you search a user who already has an account, or invite a new email and choose their portal role.</li>
+      <li>Maximum access is <b>"Can edit"</b> — never owner, never invites, never closes (a normal Trello member).</li>
+      <li>A "Pending invitations" section with "Cancel invitation"; the user's row carries a "Client · K-Health" badge.</li>
+      <li>In the client portal: the existing "Task Management" page gains a <b>"Work boards"</b> section above the Deliverables Plans.</li>
     </ul></div>
-    <div class="not"><h3>ما الذي لا يتغيّر</h3><ul>
-      <li>شاشة اللوحة نفسها — العميل يراها كما يراها الموظف، بلا زرّ «مشاركة» ولا «⋯» (ليست له أصلاً فلا تُرسم).</li>
-      <li>العميل <b>لا ينشئ لوحات</b>؛ يعمل على ما نضعه فيه، ويضيف بطاقة إذا كان عنده طلب.</li>
-      <li>الإخفاء الافتراضي للبطاقات يبقى (DEC-013). البطاقات المنقولة تُفتح لمن كان عضواً في لوحتها يوم النقل.</li>
+    <div class="not"><h3>What does not change</h3><ul>
+      <li>The board screen itself — the client sees it exactly as staff do, without "Share" and "⋯" (not theirs, so not drawn).</li>
+      <li>The client <b>does not create boards</b>; they work on the ones we put them on and add a card when they have a request.</li>
+      <li>Cards stay hidden by default (DEC-013). Migrated cards open to whoever was on that board on migration day.</li>
     </ul></div>
   </div>
-  <figure><img src="img/TR-1.png" alt="نافذة مشاركة اللوحة مع مفتاح زميل / مستخدم عميل"><figcaption>TR-1 · نافذة المشاركة الحالية + مفتاح «مستخدم عميل» + الدعوات المعلّقة</figcaption></figure>
-  <figure><img src="img/TR-2.png" alt="صفحة قبول الدعوة"><figcaption>TR-2 · ما يصل المدعو الجديد: صفحة «قبول الدعوة» بنفس شكل صفحة الدخول</figcaption></figure>
-  <figure><img src="img/TR-3.png" alt="صفحة إدارة المهام في بوابة العميل مع قسم لوحات العمل"><figcaption>TR-3 · بوابة العميل: قسم «لوحات العمل» في صفحة إدارة المهام الموجودة</figcaption></figure>
-  <figure><img src="img/TR-4.png" alt="اللوحة كما يراها مستخدم العميل"><figcaption>TR-4 · اللوحة كما يراها مستخدم العميل: يضيف بطاقة، ينقلها، يعلّق — بلا مشاركة ولا إغلاق</figcaption></figure>
-  <div class="decide"><span class="q">الفجوة ١ — مستخدم العميل</span><span class="opt ok">☐ موافق</span><span class="opt ed">☐ تعديل: ………………</span></div>
+  <figure><img src="img/TR-1.png" alt="Share dialog with the colleague / client user toggle"><figcaption>TR-1 · The current share dialog + "Client user" toggle + pending invitations</figcaption></figure>
+  <figure><img src="img/TR-2.png" alt="Accept invitation page"><figcaption>TR-2 · What a new invitee lands on: "Accept invitation", same look as the sign-in page</figcaption></figure>
+  <figure><img src="img/TR-3.png" alt="Client portal Task Management page with a Work boards section"><figcaption>TR-3 · Client portal: "Work boards" section in the existing Task Management page</figcaption></figure>
+  <figure><img src="img/TR-4.png" alt="The board as a client user sees it"><figcaption>TR-4 · The board as a client user sees it: add a card, move it, comment — no share, no close</figcaption></figure>
+  <div class="decide"><span class="q">Gap 1 — client user</span><span class="opt ok">☐ Approve</span><span class="opt ed">☐ Change: ………………</span></div>
 </section>
 
-<!-- ───────────── الفجوة ٢ ───────────── -->
 <section class="gap" id="g2">
-  <div class="gh"><span class="n">2</span><div class="t"><h2>إنشاء لوحة من قالب</h2><span class="kind mod">تعديل على نافذة «إنشاء لوحة» + صفّ في قائمة اللوحة</span></div></div>
-  <div class="why"><h3>لماذا</h3><p style="margin:0">كل لوحات المشاريع في Trello نُسخت من بعضها بنفس المراحل (New Request → Development → UAT → Completed → Launched)، وبعضها بمرحلة «Client Testing» كما في NICE وDen، ولوحة DFTR تصير قالباً (TR-010). في النظام تكتب الأعمدة يدوياً في كل مرة.</p></div>
+  <div class="gh"><span class="n">2</span><div class="t"><h2>Create a board from a template</h2><span class="kind mod">Change to the "Create board" dialog + one row in the board menu</span></div></div>
+  <div class="why"><h3>Why</h3><p style="margin:0">Every project board in Trello was copied from another with the same stages (New Request → Development → UAT → Completed → Launched), some with a "Client Testing" stage as in NICE and Den, and the DFTR board becomes a template (TR-010). In the system you type the columns by hand every time.</p></div>
   <div class="cols2">
-    <div class="what"><h3>ما الذي يتغيّر</h3><ul>
-      <li>نافذة «إنشاء لوحة» الحالية تأخذ خانة <b>«ابدأ من»</b>: المسار المعتاد · اختبار العميل · DFTR · لوحة فارغة.</li>
-      <li>القالب ينسخ الأعمدة بترتيبها وتعريفات الحقول المخصصة والوسوم — <b>ولا ينسخ بطاقات أبداً</b>.</li>
-      <li>قائمة اللوحة (⋯) تأخذ صفاً واحداً: <b>«حفظ كقالب»</b> — للمالك فقط.</li>
+    <div class="what"><h3>What changes</h3><ul>
+      <li>The existing "Create board" dialog gets a <b>"Start from"</b> field: Standard flow · Client testing · DFTR · Blank board.</li>
+      <li>A template copies the columns in order, the custom-field definitions and the labels — <b>never cards</b>.</li>
+      <li>The board menu (⋯) gets one row: <b>"Save as template"</b> — owner only.</li>
     </ul></div>
-    <div class="not"><h3>ما الذي لا يتغيّر</h3><ul><li>«لوحة فارغة» = سلوك اليوم حرفياً.</li><li>لا شاشة إدارة قوالب مستقلة؛ القالب لوحة محفوظة بهذه الصفة.</li></ul></div>
+    <div class="not"><h3>What does not change</h3><ul><li>"Blank board" is literally today's behaviour.</li><li>No separate template-management screen; a template is a board saved as one.</li></ul></div>
   </div>
-  <figure><img src="img/TR-5.png" alt="نافذة إنشاء لوحة مع اختيار القالب"><figcaption>TR-5 · «ابدأ من» داخل نافذة الإنشاء الحالية</figcaption></figure>
-  <figure><img src="img/TR-5b.png" alt="قائمة اللوحة مع صف حفظ كقالب"><figcaption>TR-5b · صفّ «حفظ كقالب» في قائمة اللوحة</figcaption></figure>
-  <div class="decide"><span class="q">الفجوة ٢ — القوالب</span><span class="opt ok">☐ موافق</span><span class="opt ed">☐ تعديل: ………………</span></div>
+  <figure><img src="img/TR-5.png" alt="Create board dialog with template picker"><figcaption>TR-5 · "Start from" inside the current create dialog</figcaption></figure>
+  <figure><img src="img/TR-5b.png" alt="Board menu with Save as template row"><figcaption>TR-5b · "Save as template" row in the board menu</figcaption></figure>
+  <div class="decide"><span class="q">Gap 2 — templates</span><span class="opt ok">☐ Approve</span><span class="opt ed">☐ Change: ………………</span></div>
 </section>
 
-<!-- ───────────── الفجوة ٣ ───────────── -->
 <section class="gap" id="g3">
-  <div class="gh"><span class="n">3</span><div class="t"><h2>الإشعار بالبريد</h2><span class="kind none">بلا شاشة جديدة — إعدادات فقط</span></div></div>
-  <div class="why"><h3>لماذا</h3><p style="margin:0">مستخدم العميل لا يفتح النظام يومياً؛ Trello يرسل له بريداً عند ذكره أو إسناده أو التعليق على بطاقته. وأنت وميثم تفقدان بريد Trello بعد الإلغاء.</p></div>
+  <div class="gh"><span class="n">3</span><div class="t"><h2>Email notifications</h2><span class="kind none">No new screen — settings only</span></div></div>
+  <div class="why"><h3>Why</h3><p style="margin:0">A client user does not open the system daily; Trello emails them when mentioned, assigned, or when someone comments on their card. You and Maytham lose Trello's emails after cancellation.</p></div>
   <div class="cols2">
-    <div class="what"><h3>ما الذي يتغيّر</h3><ul><li>ثلاثة أحداث تُضاف إلى إشعارات النظام القائمة (ذكر في تعليق · إسناد إلى بطاقة · تعليق جديد على بطاقة أنت عضو فيها) — بالبريد، للموظف ولمستخدم العميل، بلغة كلٍّ منهما.</li><li>تُدار من تبويب الإشعارات الموجود في لوحة الإعدادات، وصفحة «تفضيلات الإشعارات» الموجودة لكل مستخدم.</li></ul></div>
-    <div class="not"><h3>ما الذي لا يتغيّر</h3><ul><li>لا شاشة جديدة. فشل البريد لا يُفشل التعليق (NFR-007).</li></ul></div>
+    <div class="what"><h3>What changes</h3><ul><li>Three events join the system's existing notifications (mentioned in a comment · assigned to a card · new comment on a card you are a member of) — by email, for staff and client users, in each one's language.</li><li>Managed from the existing Notifications tab in Control Panel and each user's existing "Notification preferences" page.</li></ul></div>
+    <div class="not"><h3>What does not change</h3><ul><li>No new screen. A failed email never fails the comment (NFR-007).</li></ul></div>
   </div>
-  <div class="decide"><span class="q">الفجوة ٣ — البريد</span><span class="opt ok">☐ موافق</span><span class="opt ed">☐ تعديل: ………………</span></div>
+  <div class="decide"><span class="q">Gap 3 — email</span><span class="opt ok">☐ Approve</span><span class="opt ed">☐ Change: ………………</span></div>
 </section>
 
-<!-- ───────────── الفجوة ٤ ───────────── -->
 <section class="gap" id="g4">
-  <div class="gh"><span class="n">4</span><div class="t"><h2>نقل لوحات Trello إلى النظام</h2><span class="kind new">الشاشة الجديدة الوحيدة · تراها أنت وعدنان فقط</span></div></div>
-  <div class="why"><h3>لماذا</h3><p style="margin:0">١٠ لوحات فيها عمل و٨٦٧ بطاقة بتعليقاتها وملفاتها وتاريخ نقلها بين المراحل. قرارك: ننقلها كلها، ولا يضيع شيء، وTrello يبقى مفتوحاً حتى تقرّر أنت — فالنقل يُعاد ليلتقط ما كُتب في Trello بعد آخر مرة.</p></div>
+  <div class="gh"><span class="n">4</span><div class="t"><h2>Migrating the Trello boards into the system</h2><span class="kind new">The only new screen · seen by you and Adnan only</span></div></div>
+  <div class="why"><h3>Why</h3><p style="margin:0">10 boards with work in them and 867 cards with their comments, files and stage-move history. Your decision: migrate everything, lose nothing, and Trello stays open until you decide — so the migration re-runs to pick up whatever was written in Trello since the last run.</p></div>
   <div class="cols2">
-    <div class="what"><h3>ما الذي يتغيّر</h3><ul>
-      <li>صفحة واحدة داخل إدارة المهام بثلاث خطوات: <b>قائمة ربط الأعضاء</b> (من في Trello = من في النظام)، <b>اللوحات</b> (مصير كل لوحة وحالة نقلها وزرها)، <b>تقرير المطابقة</b> (الأعداد في Trello مقابل النظام).</li>
-      <li>الفرق لا يُغلق إلا بقبولك: زر <b>«قبول الفروق»</b> يظهر لك وحدك، مع سبب يُسجَّل باسمك (BRULE-005).</li>
-      <li>يراها حامل صلاحية «تشغيل النقل» (عدنان) و«قبول الفروق» (أنت). باقي الموظفين لا يرونها.</li>
+    <div class="what"><h3>What changes</h3><ul>
+      <li>One page inside Task Management in three steps: <b>member mapping</b> (who in Trello = who in the system), <b>boards</b> (each board's fate, migration state and its button), <b>reconciliation report</b> (counts in Trello vs the system).</li>
+      <li>A difference is closed only by you: the <b>"Accept differences"</b> button is yours alone, with a reason recorded in your name (BRULE-005).</li>
+      <li>Seen by the holder of "run migration" (Adnan) and "accept differences" (you). Other staff do not see it.</li>
     </ul></div>
-    <div class="not"><h3>ما الذي لا يتغيّر</h3><ul><li>لا تتدخل الشاشة في إلغاء Trello ولا تجميده ولا إغلاق لوحاته — كلها لك (DEC-018).</li><li>المحتوى المنقول يحتفظ بكاتبه ووقته الأصلي، لا يُنسب لمن نفّذ النقل.</li></ul></div>
+    <div class="not"><h3>What does not change</h3><ul><li>The screen never touches cancelling, freezing or closing Trello — all yours (DEC-018).</li><li>Migrated content keeps its original author and time; it is never attributed to whoever ran the migration.</li></ul></div>
   </div>
-  <figure><img src="img/TR-6.png" alt="شاشة نقل Trello"><figcaption>TR-6 · نقل Trello: قائمة الربط · اللوحات وحالاتها · تقرير المطابقة وقبول الفروق</figcaption></figure>
-  <div class="decide"><span class="q">الفجوة ٤ — النقل</span><span class="opt ok">☐ موافق</span><span class="opt ed">☐ تعديل: ………………</span></div>
+  <figure><img src="img/TR-6.png" alt="Trello migration screen"><figcaption>TR-6 · Trello migration: member mapping · boards and their states · reconciliation report and accept differences</figcaption></figure>
+  <div class="decide"><span class="q">Gap 4 — migration</span><span class="opt ok">☐ Approve</span><span class="opt ed">☐ Change: ………………</span></div>
 </section>
 
-<!-- ───────────── الفجوة ٥ ───────────── -->
 <section class="gap" id="g5">
-  <div class="gh"><span class="n">5</span><div class="t"><h2>الأتمتة تكتب على النظام بهوية مستقلة</h2><span class="kind mod">تعديل على نموذج «إصدار مفتاح» القائم + أدوات في الموصل</span></div></div>
-  <div class="why"><h3>لماذا</h3><p style="margin:0">٨٦٪ من حركات Trello (١٤,٧١٤ من ١٧,٠٤٧) تكتبها مهارات Claude وأتمتة GitHub — بمفتاحك الشخصي. نقل ذلك كما هو يعطي الأتمتة رمزاً يرى الفواتير والمصروفات. الأفعال الناقصة في الموصل اليوم: إرفاق ملف ورابط، إضافة عضو وإزالته، وبعض أفعال الوسوم.</p></div>
+  <div class="gh"><span class="n">5</span><div class="t"><h2>Automation writes to the system under its own identity</h2><span class="kind mod">Change to the existing "Issue key" form + connector tools</span></div></div>
+  <div class="why"><h3>Why</h3><p style="margin:0">86% of Trello actions (14,714 of 17,047) are written by Claude skills and GitHub automation — using your personal key. Moving that as-is would give the automation a token that can see invoices and expenses. Actions missing from the connector today: attach a file or link, add/remove a member, some label actions.</p></div>
   <div class="cols2">
-    <div class="what"><h3>ما الذي يتغيّر</h3><ul><li>نموذج إصدار المفتاح الموجود يأخذ نوعاً <b>«هوية أتمتة»</b>: اسم يظهر على كل حركة، ولوحات محددة لا غير، ويُسحب أو يُدوَّر من نفس الصفحة.</li><li>تظهر في قائمة المفاتيح بشارة «أتمتة» ونطاقها.</li><li>حركات الأتمتة تتميّز في التعليقات والسجل بشارة «أتمتة».</li><li>أفعال الموصل الناقصة تُضاف (بلا شاشة).</li></ul></div>
-    <div class="not"><h3>ما الذي لا يتغيّر</h3><ul><li>لا بديل لـButler (DEC-009): أثره ٦٥ حركة من ١٧,٠٤٧.</li><li>المفاتيح الشخصية كما هي.</li></ul></div>
+    <div class="what"><h3>What changes</h3><ul><li>The existing issue-key form gets a kind <b>"Automation identity"</b>: a name that appears on every action, specific boards only, revoked or rotated from the same page.</li><li>Listed with an "Automation" badge and its scope.</li><li>Automation actions carry an "Automation" badge in comments and history.</li><li>The missing connector actions are added (no screen).</li></ul></div>
+    <div class="not"><h3>What does not change</h3><ul><li>No Butler replacement (DEC-009): its effect is 65 actions out of 17,047.</li><li>Personal keys stay as they are.</li></ul></div>
   </div>
-  <figure><img src="img/TR-7.png" alt="إصدار هوية أتمتة"><figcaption>TR-7 · نوع «هوية أتمتة» في نموذج إصدار المفتاح، مقصورة على لوحات بعينها</figcaption></figure>
-  <div class="decide"><span class="q">الفجوة ٥ — الأتمتة</span><span class="opt ok">☐ موافق</span><span class="opt ed">☐ تعديل: ………………</span></div>
+  <figure><img src="img/TR-7.png" alt="Issue an automation identity"><figcaption>TR-7 · "Automation identity" kind in the issue-key form, scoped to specific boards</figcaption></figure>
+  <div class="decide"><span class="q">Gap 5 — automation</span><span class="opt ok">☐ Approve</span><span class="opt ed">☐ Change: ………………</span></div>
 </section>
 
-<!-- ───────────── الفجوة ٦ ───────────── -->
 <section class="gap" id="g6">
-  <div class="gh"><span class="n">6</span><div class="t"><h2>أنواع الملفات المرفقة</h2><span class="kind none">بلا شاشة — قاعدة قبول الملفات فقط</span></div></div>
-  <div class="why"><h3>لماذا</h3><p style="margin:0">٢٨٠ من ٤١٦ ملفاً مرفقاً في Trello لا تقبلها قائمة الامتدادات الحالية باسمها (أغلبها بلا امتداد في الاسم)، ومنها ٣١ ملف markdown و٤ ملفات مضغوطة وفيديو واحد.</p></div>
+  <div class="gh"><span class="n">6</span><div class="t"><h2>Attachment file types</h2><span class="kind none">No screen — the file acceptance rule only</span></div></div>
+  <div class="why"><h3>Why</h3><p style="margin:0">280 of 416 attachments in Trello are refused by the current extension allow-list by name (most have no extension in the name), among them 31 markdown files, 4 archives and one video.</p></div>
   <div class="cols2">
-    <div class="what"><h3>ما الذي يتغيّر</h3><ul><li>النظام يستنتج نوع الملف من محتواه حين يخلو اسمه من الامتداد.</li><li>تُقبل على بطاقات اللوحات: <span class="latin">.md</span> و<span class="latin">.zip</span> والفيديو (الافتراض المقترح — OQ-013).</li></ul></div>
-    <div class="not"><h3>ما الذي لا يتغيّر</h3><ul><li>الحد ٢٥ ميجابايت كما هو (أكبر ملف في Trello ١٣.٢).</li><li>الملف التنفيذي الوحيد لا يُستورد ويبقى في أرشيف Trello ويُذكر في تقرير المطابقة.</li></ul></div>
+    <div class="what"><h3>What changes</h3><ul><li>The system infers the file type from its content when the name carries no extension.</li><li>Accepted on board cards: <span class="latin">.md</span>, <span class="latin">.zip</span> and video (proposed default — OQ-013).</li></ul></div>
+    <div class="not"><h3>What does not change</h3><ul><li>The 25 MB limit stays (the largest Trello file is 13.2).</li><li>The single executable is never imported; it stays in the Trello archive and is listed in the reconciliation report.</li></ul></div>
   </div>
-  <div class="decide"><span class="q">الفجوة ٦ — الملفات</span><span class="opt ok">☐ موافق</span><span class="opt ed">☐ تعديل: ………………</span></div>
+  <div class="decide"><span class="q">Gap 6 — files</span><span class="opt ok">☐ Approve</span><span class="opt ed">☐ Change: ………………</span></div>
 </section>
 
-<!-- ───────────── الفجوة ٧ ───────────── -->
 <section class="gap" id="g7">
-  <div class="gh"><span class="n">7</span><div class="t"><h2>رقم بطاقة Trello القديم</h2><span class="kind mod">شارة على البطاقة + البحث بها</span></div></div>
-  <div class="why"><h3>لماذا</h3><p style="margin:0">سجلّات الإطلاق وتعليقات GitHub تشير للبطاقات بأرقام مثل #201. النظام يرقّم البطاقات CARD-NNNNNN ترقيماً متصلاً لا يُعاد (قاعدة الترقيم) — فلا نكسره، ونحفظ رقم Trello مرجعاً.</p></div>
+  <div class="gh"><span class="n">7</span><div class="t"><h2>The old Trello card number</h2><span class="kind mod">A badge on the card + searchable</span></div></div>
+  <div class="why"><h3>Why</h3><p style="margin:0">Release logs and GitHub comments refer to cards by numbers like #201. The system numbers cards CARD-NNNNNN continuously and never resets (the numbering rule) — so we do not break it, and keep the Trello number as a reference.</p></div>
   <div class="cols2">
-    <div class="what"><h3>ما الذي يتغيّر</h3><ul><li>البطاقة المنقولة تحمل شارة «Trello #201» بجانب رقمها الرسمي في ظهر البطاقة وعلى البطاقة الصغيرة.</li><li>البحث داخل اللوحة يجدها بالرقم القديم.</li></ul></div>
-    <div class="not"><h3>ما الذي لا يتغيّر</h3><ul><li>الرقم الرسمي يبقى CARD- (DEC-011). البطاقات الجديدة لا رقم Trello لها.</li></ul></div>
+    <div class="what"><h3>What changes</h3><ul><li>A migrated card carries a "Trello #201" badge beside its official number on the card back and the mini card.</li><li>Searching inside the board finds it by the old number.</li></ul></div>
+    <div class="not"><h3>What does not change</h3><ul><li>The official number stays CARD- (DEC-011). New cards have no Trello number.</li></ul></div>
   </div>
-  <div class="decide"><span class="q">الفجوة ٧ — الرقم القديم</span><span class="opt ok">☐ موافق</span><span class="opt ed">☐ تعديل: ………………</span></div>
+  <div class="decide"><span class="q">Gap 7 — old number</span><span class="opt ok">☐ Approve</span><span class="opt ed">☐ Change: ………………</span></div>
 </section>
 
-<!-- ───────────── الفجوة ٨ ───────────── -->
 <section class="gap" id="g8">
-  <div class="gh"><span class="n">8</span><div class="t"><h2>صورة غلاف البطاقة</h2><span class="kind mod">زرّ على المرفق + صورة أعلى البطاقة الصغيرة</span></div></div>
-  <div class="why"><h3>لماذا</h3><p style="margin:0">مستخدمة على قرابة ١٨٠ بطاقة في Trello. شكلية، لكنها كانت تُستخدم — وقلت: أتقن كل ما يوجد هناك وغير موجود عندنا.</p></div>
+  <div class="gh"><span class="n">8</span><div class="t"><h2>Card cover image</h2><span class="kind mod">A button on the attachment + an image on top of the mini card</span></div></div>
+  <div class="why"><h3>Why</h3><p style="margin:0">Used on about 180 Trello cards. Cosmetic, but it was used — and you said: master everything that exists there and not here.</p></div>
   <div class="cols2">
-    <div class="what"><h3>ما الذي يتغيّر</h3><ul><li>في قسم «المرفقات» بظهر البطاقة: الصور فقط تأخذ زرّ <b>«اجعلها غلافاً»</b>، والغلاف الحالي يحمل شارة «الغلاف» وزرّ «إزالة الغلاف».</li><li>البطاقة الصغيرة على اللوحة تعرض الغلاف شريطاً فوق العنوان (كما في Trello).</li></ul></div>
-    <div class="not"><h3>ما الذي لا يتغيّر</h3><ul><li>لا غلاف لوني ولا مكتبة صور — صورة مرفقة فقط.</li></ul></div>
+    <div class="what"><h3>What changes</h3><ul><li>In the card back's "Attachments": images only get a <b>"Make cover"</b> button; the current cover carries a "Cover" badge and "Remove cover".</li><li>The mini card on the board shows the cover as a strip above the title (as in Trello).</li></ul></div>
+    <div class="not"><h3>What does not change</h3><ul><li>No colour covers and no image library — an attached image only.</li></ul></div>
   </div>
-  <div class="decide"><span class="q">الفجوة ٨ — الغلاف</span><span class="opt ok">☐ موافق</span><span class="opt ed">☐ تعديل: ………………</span></div>
+  <div class="decide"><span class="q">Gap 8 — cover</span><span class="opt ok">☐ Approve</span><span class="opt ed">☐ Change: ………………</span></div>
 </section>
 
-<!-- ───────────── الفجوة ٩ ───────────── -->
 <section class="gap" id="g9">
-  <div class="gh"><span class="n">9</span><div class="t"><h2>نقل البطاقة إلى لوحة أخرى</h2><span class="kind mod">اختيار اللوحة داخل زرّ «نقل» الموجود</span></div></div>
-  <div class="why"><h3>لماذا</h3><p style="margin:0">استُخدم ٤ مرات فقط في Trello، لكنه من المطلوب إتقانه. في النظام اليوم «نقل» يختار العمود داخل نفس اللوحة فقط.</p></div>
+  <div class="gh"><span class="n">9</span><div class="t"><h2>Move a card to another board</h2><span class="kind mod">Board selector inside the existing "Move" action</span></div></div>
+  <div class="why"><h3>Why</h3><p style="margin:0">Used only 4 times in Trello, but it is on the list to master. In the system today "Move" picks a column within the same board only.</p></div>
   <div class="cols2">
-    <div class="what"><h3>ما الذي يتغيّر</h3><ul><li>لوحة «نقل» في ظهر البطاقة تأخذ خانة <b>«اللوحة»</b> قبل «العمود».</li><li>تنتقل البطاقة بوصفها وتعليقاتها ومرفقاتها، وتبقى الوسوم والحقول المخصصة التي للوحة الهدف مقابلٌ لها.</li></ul></div>
-    <div class="not"><h3>ما الذي لا يتغيّر</h3><ul><li>النقل داخل اللوحة كما هو. مستخدم العميل ينقل فقط بين لوحات هو عضو فيها.</li></ul></div>
+    <div class="what"><h3>What changes</h3><ul><li>The "Move" panel on the card back gets a <b>"Board"</b> field before "Column".</li><li>The card moves with its description, comments and attachments; labels and custom fields are kept where the target board has a match.</li></ul></div>
+    <div class="not"><h3>What does not change</h3><ul><li>Moving within a board is as today. A client user moves only between boards they are a member of.</li></ul></div>
   </div>
-  <figure><img src="img/TR-8.png" alt="ظهر البطاقة: رقم Trello، الغلاف، النقل إلى لوحة أخرى"><figcaption>TR-8 · ظهر البطاقة الحالي بالإضافات الثلاث: الرقم القديم (٧) · الغلاف (٨) · النقل إلى لوحة أخرى (٩)</figcaption></figure>
-  <div class="decide"><span class="q">الفجوة ٩ — النقل بين اللوحات</span><span class="opt ok">☐ موافق</span><span class="opt ed">☐ تعديل: ………………</span></div>
+  <figure><img src="img/TR-8.png" alt="Card back: Trello number, cover, move to another board"><figcaption>TR-8 · The current card back with the three additions: old number (7) · cover (8) · move to another board (9)</figcaption></figure>
+  <div class="decide"><span class="q">Gap 9 — move between boards</span><span class="opt ok">☐ Approve</span><span class="opt ed">☐ Change: ………………</span></div>
 </section>
 
 <div class="callout ask">
-  <h3>ثلاثة أشياء نحتاج كلمتك فيها قبل التطوير</h3>
+  <h3>Three things we need your word on before development</h3>
   <ul>
-    <li><b>قدرة مستخدم العميل على لوحته = العضو العادي في Trello</b> (ينشئ ويعدّل وينقل ويعلّق ويرفق — ولا يدعو ولا يغلق). مكتوبة في المتطلبات بقرار عدنان (DEC-002) وتنتظر تأكيدك الصريح.</li>
-    <li><b>مدة صلاحية الدعوة</b> قبل أن تنتهي (WFOQ-001). لم نرسم رقماً في الشاشة حتى لا نفترضه.</li>
-    <li><b>من يرى تلقائياً البطاقة الجديدة</b> التي تنشئها الأتمتة أو يفتحها مستخدم العميل (OQ-021). الافتراض المقترح: مالك اللوحة وكل الموظفين الأعضاء فيها.</li>
+    <li><b>A client user's power on their board = a normal Trello member</b> (creates, edits, moves, comments, attaches — never invites, never closes). Written in the requirements by Adnan's decision (DEC-002) and awaiting your explicit confirmation.</li>
+    <li><b>How long an invitation stays valid</b> before it expires (WFOQ-001). No number is drawn so we do not assume one.</li>
+    <li><b>Who automatically sees a new card</b> created by automation or opened by a client user (OQ-021). Proposed default: the board owner and every staff member of the board.</li>
   </ul>
 </div>
 
 <div class="callout warn">
-  <h3>ما لن نبنيه عمداً — لأنه لم يكن يُستخدم أو قُطع بقرار سابق</h3>
+  <h3>What we will deliberately not build — unused, or already cut by an earlier decision</h3>
   <ul>
-    <li>Butler (بديل الأتمتة): أثره ٦٥ حركة من ١٧,٠٤٧ — DEC-009.</li>
-    <li>Power-Ups · الجدول الزمني والتقويم الخاصة بـTrello Premium · نسخ اللوحة · الصورة الخلفية · النجمة ★ · نسخ البطاقة ومشاركتها (DEC-TM-8، وافقت عليها 2026-07-17).</li>
-    <li>أي تغيير على لوحات خطة التشغيل أو بوابة العميل القائمة (CON-001).</li>
+    <li>Butler (automation replacement): 65 actions out of 17,047 — DEC-009.</li>
+    <li>Power-Ups · Trello Premium's Timeline and Calendar · copy board · background · the ★ star · copy/share a card (DEC-TM-8, which you approved on 2026-07-17).</li>
+    <li>Any change to the existing Deliverables Plan boards or the client portal (CON-001).</li>
   </ul>
 </div>
 
 <div class="callout">
-  <h3>الحجم بالأرقام</h3>
+  <h3>The size, in numbers</h3>
   <table>
-    <thead><tr><th>النوع</th><th>العدد</th><th>الشاشات</th></tr></thead>
+    <thead><tr><th>Kind</th><th>Count</th><th>Screens</th></tr></thead>
     <tbody>
-      <tr><td>شاشة جديدة</td><td>1</td><td>نقل Trello (TR-6)</td></tr>
-      <tr><td>صفحة جديدة بنمط قائم</td><td>1</td><td>قبول الدعوة (TR-2) — نفس شكل صفحة الدخول</td></tr>
-      <tr><td>تعديل على شاشة قائمة</td><td>6</td><td>مشاركة اللوحة · بوابة العميل/إدارة المهام · إنشاء لوحة · قائمة اللوحة · مفاتيح API · ظهر البطاقة</td></tr>
-      <tr><td>بلا شاشة</td><td>2</td><td>البريد · أنواع الملفات</td></tr>
+      <tr><td>New screen</td><td>1</td><td>Trello migration (TR-6)</td></tr>
+      <tr><td>New page on an existing pattern</td><td>1</td><td>Accept invitation (TR-2) — same look as the sign-in page</td></tr>
+      <tr><td>Change to an existing screen</td><td>6</td><td>Share board · client portal / Task Management · Create board · board menu · API keys · card back</td></tr>
+      <tr><td>No screen</td><td>2</td><td>Email · file types</td></tr>
     </tbody>
   </table>
 </div>
 
-<footer>TheTeam · إدارة المهام · اقتراح التصميم لاستبدال Trello · 2026-11-08 · للمراجعة فقط، بيانات الشاشات مصطنعة</footer>
+<footer>TheTeam · Task Management · Trello replacement design proposal · 2026-11-08 · for review only, screen data is synthetic</footer>
 </div>
 </body>
 </html>
